@@ -1,0 +1,31 @@
+var planetNames = ["Eros", "Gaspra", "Ida", "Mathilde", "Kalliope", "Iapetus", "Phoebe", "Epimetheus"];
+var ShipNames = ["The Crusher", "The Aldemarin Comet", "The Jovian Corsair", "The Stoorkoian Death", "The Mars Star"];
+
+var helper = new function () {
+    var self = this;
+    var planetsFullNames=[];
+    setPlanetsFullNames();
+
+    self.getRandomShipName=function()
+    {
+        return ShipNames[Math.floor(Math.random() * ShipNames.length)];
+    };
+
+    self.getRandomPlanetName=function()
+    {
+        var index = Math.floor(Math.random() * planetsFullNames.length);
+        var planetNumber = planetsFullNames[index].number == 1 ? "" : "-" + planetsFullNames[index].number;
+        planetsFullNames[index].number++;
+        var newName = planetsFullNames[index].name + planetNumber;
+        return newName;
+    };
+
+    function setPlanetsFullNames() {
+        for (var i in planetNames) {
+            planetsFullNames.push({
+                name: planetNames[i],
+                number: 1
+            })
+        }
+    };
+}
